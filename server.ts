@@ -128,23 +128,12 @@ app.post("/api/upscale", upload.array("images", 100), async (req, res) => {
     }
   }
 });
+// Раздача статических файлов и главной страницы
+app.use(express.static(process.cwd()));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'index.html'));
+});
 
-// Vite middleware for development
-if (process.env.NODE_ENV !== "production") {
-  (async () => {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  })();
-} else {
-  const distPath = path.join(process.cwd(), "dist");
-  app.use(express.static(distPath));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(distPath, "index.html"));
-  });
-}
 
 // Start server
 async function startServer() {
