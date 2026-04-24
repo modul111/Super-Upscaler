@@ -136,8 +136,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'index.html'));
 });
 
-});
-
 
 // Start server
 async function startServer() {
