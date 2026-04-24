@@ -128,22 +128,12 @@ app.post("/api/upscale", upload.array("images", 100), async (req, res) => {
     }
   }
 });
-// Раздача статических файлов и главной страницы
-app.use(express.static(process.cwd()));
-app.use('/src', express.static(path.join(process.cwd(), 'src')));
 
+
+// Віддаємо готові файли з папки dist (яку створить Vite)
+app.use(express.static(path.join(process.cwd(), 'dist')));
+
+// Якщо шлях не знайдено, все одно віддаємо головну сторінку
 app.get('*', (req, res) => {
-    res.sendFile(path.join(process.cwd(), 'index.html'));
+    res.sendFile(path.join(process.cwd(), 'dist', 'index.html'));
 });
-
-
-// Start server
-async function startServer() {
-  await ensureUploadsDir();
-  
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
-}
-
-startServer();
