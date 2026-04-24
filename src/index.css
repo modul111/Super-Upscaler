@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  :root {
+    --bg: #09090b;
+    --card: #18181b;
+    --accent: #3b82f6;
+    --text-p: #ffffff;
+    --text-s: #a1a1aa;
+    --border: #27272a;
+  }
+
+  body {
+    @apply bg-[#09090b] text-[#ffffff] font-sans antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-extrabold tracking-[-0.05em];
+  }
+}
+
+/* Before/After Slider specific styles - Updated for Bold Typography */
+.comparison-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.comparison-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: white;
+  cursor: ew-resize;
+  z-index: 10;
+}
+
+.comparison-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #09090b;
+  font-size: 14px;
+  font-weight: 800;
+}
+
