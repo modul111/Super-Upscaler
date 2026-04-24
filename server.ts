@@ -130,8 +130,12 @@ app.post("/api/upscale", upload.array("images", 100), async (req, res) => {
 });
 // Раздача статических файлов и главной страницы
 app.use(express.static(process.cwd()));
+app.use('/src', express.static(path.join(process.cwd(), 'src')));
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'index.html'));
+});
+
 });
 
 
